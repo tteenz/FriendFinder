@@ -255,16 +255,16 @@
             var modalBody = $('.modal-body');
             var name = $('#name').val().trim();
             var photo = $('#photo').val();
-            var item1 = $('#item1').val();
-            var item2 = $('#item2').val();
-            var item3 = $('#item3').val();
-            var item4 = $('#item4').val();
-            var item5 = $('#item5').val();
-            var item6 = $('#item6').val();
-            var item7 = $('#item7').val();
-            var item8 = $('#item8').val();
-            var item9 = $('#item9').val();
-            var item10 = $('#item10').val();
+            var item1 = parseInt($('#item1').val());
+            var item2 = parseInt($('#item2').val());
+            var item3 = parseInt($('#item3').val());
+            var item4 = parseInt($('#item4').val());
+            var item5 = parseInt($('#item5').val());
+            var item6 = parseInt($('#item6').val());
+            var item7 = parseInt($('#item7').val());
+            var item8 = parseInt($('#item8').val());
+            var item9 = parseInt($('#item9').val());
+            var item10 = parseInt($('#item10').val());
 
             var userInput = {
                 name: name,
@@ -286,13 +286,13 @@
                     if (data.name !== undefined) {
                         matchStatus.html('Your match...');
                         modalBody.html('<p>...is ' + data.name + '!</p><img src="' + data.photo + '" height="200">');
-                        // } else {
-                        //     matchStatus.html('Not enough data!');
-                        //     modalBody.html('<p>Unfortunately there is not yet enough user data to match you</p>');
-                        // }
+                        } else {
+                            matchStatus.html('Not enough data!');
+                            modalBody.html('<p>Unfortunately there is not yet enough user data to match you</p>');
+                        }
 
                         $('.modal').modal('toggle');
-                    }
+                    
                 });
             } else {
                 matchStatus.html('ERROR!');
