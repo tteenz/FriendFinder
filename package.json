@@ -1,0 +1,29 @@
+{
+  "name": "friendfinder",
+  "version": "1.0.0",
+  "description": "Similar to a dating app, but for friends",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tteenz/FriendFinder.git"
+  },
+  "keywords": [
+    "friendfinder",
+    "friends"
+  ],
+  "author": "Tina Tran",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tteenz/FriendFinder/issues"
+  },
+  "homepage": "https://github.com/tteenz/FriendFinder#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "path": "^0.12.7"
+  }
+}
