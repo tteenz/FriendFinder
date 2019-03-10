@@ -4,13 +4,13 @@ var friends = require('../data/friends.js');
 // Route
 module.exports = function (app) {
 
-    app.get('/api/friends', function (req, response) {
-        response.json(friends);
+    app.get('/api/friends', function (req, res) {
+        res.json(friends);
     });
-    app.post("/api/friends", function (req, response) {
+    app.post("/api/friends", function (req, res) {
         var difference = 40;
-        var friendName = '';
-        var friendPhoto = '';
+        var matchName = '';
+        var matchPhoto = '';
 
         friends.forEach(function (friend) {
             var matchedScoresArray = [];
@@ -29,13 +29,13 @@ module.exports = function (app) {
 
             if (totalDifference < difference) {
                 difference = totalDifference;
-                friendName = friend.name;
-                friendPhoto = friend.photo;
+                matchName = friend.name;
+                matchPhoto = friend.photo;
             }
         });
-        response.json({
-            name: friendName,
-            photo: friendPhoto
+        res.json({
+            name: matchName,
+            photo: matchPhoto
         });
 
         friends.push(req.body);

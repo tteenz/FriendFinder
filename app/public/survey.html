@@ -227,7 +227,7 @@
         <button type="submit" class="btn btn-danger btn-lg btn-block" id="submit">Submit</button>
         <br>
         <a href="/">
-            <button type="button" class="btn btn-dark">
+            <button type="button" class="btn btn-danger">
                 Return Home
             </button>
             <br>
@@ -286,13 +286,13 @@
                     if (data.name !== undefined) {
                         matchStatus.html('Your match...');
                         modalBody.html('<p>...is ' + data.name + '!</p><img src="' + data.photo + '" height="200">');
-                        } else {
-                            matchStatus.html('Not enough data!');
-                            modalBody.html('<p>Unfortunately there is not yet enough user data to match you</p>');
-                        }
+                    } else {
+                        matchStatus.html('Not enough data!');
+                        modalBody.html('<p>Unfortunately there is not yet enough user data to match you</p>');
+                    }
 
-                        $('.modal').modal('toggle');
-                    
+                    $('.modal').modal('toggle');
+
                 });
             } else {
                 matchStatus.html('ERROR!');
