@@ -8,9 +8,9 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cerulean/bootstrap.min.css" rel="stylesheet" integrity="sha384-zF4BRsG/fLiTGfR9QL82DrilZxrwgY/+du4p/c7J72zZj+FLYq4zY00RylP9ZjiT"
         crossorigin="anonymous">
 
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
-        crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
 </head>
 
 <style>
@@ -247,60 +247,75 @@
 
         </footer>
     </div>
+
     <script type="text/javascript">
-        // Listener
-        $('#submit').on('click', function (event) {
-            event.preventDefault();
-            var matchStatus = $('.modal-title');
-            var modalBody = $('.modal-body');
-            var name = $('#name').val().trim();
-            var photo = $('#photo').val();
-            var item1 = parseInt($('#item1').val());
-            var item2 = parseInt($('#item2').val());
-            var item3 = parseInt($('#item3').val());
-            var item4 = parseInt($('#item4').val());
-            var item5 = parseInt($('#item5').val());
-            var item6 = parseInt($('#item6').val());
-            var item7 = parseInt($('#item7').val());
-            var item8 = parseInt($('#item8').val());
-            var item9 = parseInt($('#item9').val());
-            var item10 = parseInt($('#item10').val());
 
-            var userInput = {
-                name: name,
-                photo: photo,
-                scores: [item1, item2, item4, item5, item6, item7, item8, item9, item10]
-            };
+        $('#submit').on('click', function(event) {
+        event.preventDefault();
 
-            if (
-                (name !== '') && (photo !== '') && (!isNaN(item1)) &&
-                (!isNaN(item2)) && (!isNaN(item3)) && (!isNaN(item4)) &&
-                (!isNaN(item5)) && (!isNaN(item6)) && (!isNaN(item7)) &&
-                (!isNaN(item8)) && (!isNaN(item9)) && (!isNaN(item10))
-            ) {
+        var matchStatus = $('.modal-title');
+        var modalBody = $('.modal-body');
+        var name = $('#name').val().trim();
+        var photo = $('#photo').val();
+        var item1 = parseInt($('#item1').val());
+        var item2 = parseInt($('#item2').val());
+        var item3 = parseInt($('#item3').val());
+        var item4 = parseInt($('#item4').val());
+        var item5 = parseInt($('#item5').val());
+        var item6 = parseInt($('#item6').val());
+        var item7 = parseInt($('#item7').val());
+        var item8 = parseInt($('#item8').val());
+        var item9 = parseInt($('#item9').val());
+        var item10 = parseInt($('#item10').val());
 
-                var currentURL = window.location.origin;
+        var userInput = {
+            name: name,
+            photo: photo,
+            scores: [
+                item1,
+                item2,
+                item3,
+                item4,
+                item5,
+                item6,
+                item7,
+                item8,
+                item9,
+                item10
+            ]
+        };
 
-                // AJAX 
-                $.post(currentURL + "/api/friends", userInput, function (data) {
-                    if (data.name !== undefined) {
-                        matchStatus.html('Your match...');
-                        modalBody.html('<p>...is ' + data.name + '!</p><img src="' + data.photo + '" height="200">');
-                    } else {
-                        matchStatus.html('Not enough data!');
-                        modalBody.html('<p>Unfortunately there is not yet enough user data to match you</p>');
-                    }
+        if (
+            (name !== '') && (photo !== '') && (!isNaN(item1)) &&
+            (!isNaN(item2)) && (!isNaN(item3)) && (!isNaN(item4)) &&
+            (!isNaN(item5)) && (!isNaN(item6)) && (!isNaN(item7)) &&
+            (!isNaN(item8)) && (!isNaN(item9)) && (!isNaN(item10))
+        ) {
+            var currentURL = window.location.origin;
 
-                    $('.modal').modal('toggle');
+            $.post(currentURL + "/api/friends", userInput, function(data) {
+            		// If the data has a match, then show this
+                if (data.name !== undefined) {
+                    matchStatus.html('Your match...');
+                    modalBody.html('<p>...is ' + data.name + '!</p><img src="' + data.photo + '" height="200">');
+                // } else {
+                // 	// If no match, show this
+                //     matchStatus.html('Not enough data!');
+                //     modalBody.html('<p>Unfortunately there is not yet enough user data to match you</p>');
+                // }
 
-                });
-            } else {
-                matchStatus.html('ERROR!');
-                modalBody.html('Please fill everything out.');
+                // Toggle modal on
                 $('.modal').modal('toggle');
-            }
-
-        });
+}
+            });
+        } else {
+        		// If the form was not valid, this error is shown
+            matchStatus.html('Error...');
+            modalBody.html('Please fill out everything');
+            // Toggle modal on
+            $('.modal').modal('toggle');
+        }
+    });
 
         // $('#friend-form').reset();
     </script>
